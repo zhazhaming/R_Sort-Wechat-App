@@ -1,0 +1,34 @@
+
+.pag1{
+		position: relative;
+}
+.bg1 {
+	width: 100%;
+	height: 808px;
+}
+.bg1 image{
+	width: 100%;
+	height: 808px;
+}
+.top-title {
+	width: 302rpx;
+	height: 63rpx;
+	position: absolute;
+	top: 7%;
+	left: 30%;
+}
+.top-title image {
+	width: 100%;
+	height: 63rpx;
+}
+.article {
+	width: 80%;
+	height: 550px;
+	position: absolute;
+	top: 14%;
+	left: 10%;
+	line-height: 32px;
+	text-indent: 2em;
+	overflow-y: auto;
+}
+

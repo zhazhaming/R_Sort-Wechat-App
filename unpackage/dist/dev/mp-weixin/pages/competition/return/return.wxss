@@ -1,0 +1,44 @@
+
+.competition{
+	width: 100%;
+	height: 808px;
+	font-size: 40rpx;
+	position: relative;
+}
+.bg{
+	width: 100%;
+	height:100%;
+	margin-left: 0;
+}
+.zsjd{
+	width: 60%;
+	height: 150px;
+	padding-top: 20px;
+	position: absolute;
+	/* margin: 0 auto; */
+	left: 20%;
+	top: 25%;
+}
+.zsjd image {
+	width: 100%;
+	height: 150px;
+}
+.bin {
+	width: 100%;
+	height: 65px;
+	position: absolute;
+	top: 50%;
+}
+.bin1 {
+	float: left;
+	width: 100px;
+	height: 65px;
+	margin-left: 20%;
+}
+.bin2 {
+	float: left;
+	width: 100px;
+	height: 65px;
+	margin-left: 10%;
+}
+

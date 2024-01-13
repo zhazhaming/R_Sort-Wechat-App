@@ -1,0 +1,68 @@
+
+.page{
+		position: relative;
+}
+.bg {
+	width: 100%;
+	height: 808px;
+}
+.bg image{
+	width: 100%;
+	height: 808px;
+}
+.participate1{
+	width: 377px;
+	height: 126.5px;	
+	position: absolute;
+	top: 10%;
+	left: 5%;
+}
+.participate2{
+	width: 377px;
+	height: 126.5px;
+	position: absolute;
+	top: 28%;
+	left: 5%;
+}
+.participate3{
+	width: 377px;
+	height: 126.5px;
+	position: absolute;
+	top: 46%;
+	left: 5%;
+}
+.participate4{
+	width: 377px;
+	height: 126.5px;
+	position: absolute;
+	top: 64%;
+	left: 5%;
+}
+.participate5{
+	width: 377px;
+	height: 126.5px;
+	position: absolute;
+	top: 82%;
+	left: 5%;
+}
+.participate1 image {
+	width: 100%;
+	height: 126.5px;
+}
+.participate2 image {
+	width: 100%;
+	height: 126.5px;
+}
+.participate3 image {
+	width: 100%;
+	height: 126.5px;
+}
+.participate4 image {
+	width: 100%;
+	height: 126.5px;
+}
+.participate5 image {
+	width: 100%;
+	height: 126.5px;
+}
+

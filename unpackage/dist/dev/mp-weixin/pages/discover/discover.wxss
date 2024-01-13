@@ -1,0 +1,73 @@
+
+.background.data-v-42b8c6b4 {
+	width: 100%;
+	height: 500px;
+	background-image: url(https://s2.loli.net/2022/06/15/Fzk72QUNxAsiIao.png);
+	background-size: 100% 100%;
+	position: relative;
+}
+.participate.data-v-42b8c6b4 {
+	width: 50px;
+	height: 64.5px;
+	position: absolute;
+	top: 350px;
+	left: 20%
+}
+.article.data-v-42b8c6b4 {
+	width: 50px;
+	height: 64.5px;
+	position: absolute;
+	top: 350px;
+	left: 45%;
+}
+.competition.data-v-42b8c6b4 {
+	width: 50px;
+	height: 64.5px;
+	position: absolute;
+	top: 350px;
+	right: 20%;
+}
+.game.data-v-42b8c6b4 {
+	width: 46px;
+	height: 60.5px;
+	position: absolute;
+	top: 350px;
+	right: 35%;
+}
+.video.data-v-42b8c6b4 {
+	width: 100%;
+	height: 200px;
+	background-image: url(https://s2.loli.net/2022/06/15/wKFABZT7u86O4cG.png);
+	background-size: 100% 100%;
+	position: relative;
+	margin-top: -50px;
+}
+.video1.data-v-42b8c6b4 {
+	position: absolute;
+	top: 50px;
+	left: 20px;
+	width: 170px;
+	height: 100px;
+}
+.video2.data-v-42b8c6b4 {
+	position: absolute;
+	top: 50px;
+	right: 20px;
+	width: 170px;
+	height: 100px;
+}
+.video3.data-v-42b8c6b4 {
+	position: absolute;
+	top: 200px;
+	left: 20px;
+	width: 170px;
+	height: 100px;
+}
+.video4.data-v-42b8c6b4 {
+	position: absolute;
+	top: 200px;
+	right: 20px;
+	width: 170px;
+	height: 100px;
+}
+

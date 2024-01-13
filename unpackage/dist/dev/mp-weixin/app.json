@@ -1,0 +1,66 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/discover/discover",
+    "pages/search/search",
+    "pages/details/details",
+    "pages/encyclopedias1/encyclopedias1",
+    "pages/encyclopedias2/encyclopedias2",
+    "pages/encyclopedias3/encyclopedias3",
+    "pages/encyclopedias4/encyclopedias4",
+    "pages/user/user",
+    "pages/participate/participate",
+    "pages/article/article",
+    "pages/competition/competition",
+    "pages/participate/out1/out1",
+    "pages/participate/out2/out2",
+    "pages/participate/out3/out3",
+    "pages/participate/out4/out4",
+    "pages/participate/out5/out5",
+    "pages/article/out1/out1",
+    "pages/article/out2/out2",
+    "pages/article/out3/out3",
+    "pages/article/out4/out4",
+    "pages/article/out5/out5",
+    "pages/classify-article/classify-article",
+    "pages/rural-revitalization/rural-revitalization",
+    "pages/rural-environment/rural-environment",
+    "pages/competition/return/return",
+    "pages/user/contact/contact",
+    "pages/user/our/our"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#3cc51f",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "static/image/tabBar1.png",
+        "selectedIconPath": "static/image/tabbar1(g).png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/discover/discover",
+        "iconPath": "static/image/tabBar2.png",
+        "selectedIconPath": "static/image/tabbar2(g).png",
+        "text": "发现"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "iconPath": "static/image/tabBar3.png",
+        "selectedIconPath": "static/image/tabbar3(g).png",
+        "text": "我的"
+      }
+    ]
+  },
+  "usingComponents": {}
+}
