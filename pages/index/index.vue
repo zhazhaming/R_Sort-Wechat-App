@@ -167,7 +167,8 @@
 					title: '加载数据中....',
 				})
 				wx.request({
-					url: 'https://aip.baidubce.com/rest/2.0/image-classify/v2/advanced_general',
+					// url: 'https://aip.baidubce.com/rest/2.0/image-classify/v2/advanced_general',
+					url: 'http://127.0.0.1:5000/api/garbage/identify',
 					method: 'POST',
 					header: {
 						'content-type': 'application/x-www-form-urlencoded'
@@ -178,7 +179,9 @@
 					},
 					success(res) {
 						console.log(res);
-						let result = res.data.result[0].keyword;
+						// let result = res.data.result[0].keyword;
+						let result = res.data.data.category;
+						console.log(result);
 						wx.hideLoading()
 						that.toDetails(result)
 					}

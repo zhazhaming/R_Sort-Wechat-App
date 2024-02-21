@@ -138,9 +138,11 @@
  				this.controlShow = true;
  				this.questionBanks = [];
  				uni.request({
- 					url: 'https://changing.link/sort/garbage-encyclopedia/knowledgeContest',
+ 					// url: 'https://changing.link/sort/garbage-encyclopedia/knowledgeContest',
+					url: 'http://localhost:8009/api/v1/sort/garbage-encyclopedia/random',
  					success: (res) => {
  						console.log(res)
+						console.log(res.data)
  						console.log(res.data.data);
  						this.questionBanks = res.data.data;
  					}

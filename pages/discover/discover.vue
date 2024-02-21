@@ -2,9 +2,9 @@
 	<view>
 		<view class="background">
 			<view>
-				<image class="article" src="https://s2.loli.net/2022/06/15/l7nwdC5kMRtK3fr.png" @click="toarticle"></image>
-				<image class="participate" src="https://s2.loli.net/2022/06/15/vtF6Nrcz7aifHLD.png" @click="toparticipate"></image>
-				<image class="competition" src="https://s2.loli.net/2022/06/15/BeUgLxirXyadMcl.png" @click="tocompetition"></image>
+				<image class="article" src="https://picst.sunbangyan.cn/2024/01/27/f9a1a37a63d4b157ae801cf576ec31ea.jpeg" @click="toarticle"></image>
+				<image class="participate" src="https://picdm.sunbangyan.cn/2024/01/27/d039943c277f6dd938403b71a8ae4621.jpeg" @click="toparticipate"></image>
+				<image class="competition" src="https://picdm.sunbangyan.cn/2024/01/27/5a09c7f2e437043768baf097fa6d38eb.jpeg" @click="tocompetition"></image>
 				<!-- <image class="game" src="https://636c-cloud1-5gy3mgvy401e933b-1306354275.tcb.qcloud.la/game.png?sign=7a8d8a3793d6be8093d343731f74b01c&t=1644754338"></image> -->
 			</view>
 		</view>
@@ -52,7 +52,7 @@
 	.background {
 		width: 100%;
 		height: 500px;
-		background-image: url(https://s2.loli.net/2022/06/15/Fzk72QUNxAsiIao.png);
+		background-image: url(https://picst.sunbangyan.cn/2024/01/27/11010188ad9d70f7d538f44ab8026322.jpeg);
 		background-size: 100% 100%;
 		position: relative;
 	}
@@ -92,7 +92,7 @@
 	.video {
 		width: 100%;
 		height: 200px;
-		background-image: url(https://s2.loli.net/2022/06/15/wKFABZT7u86O4cG.png);
+		background-image: url(https://picss.sunbangyan.cn/2024/01/27/f035eebe7f4a29002bca8a4b0e07e166.jpeg);
 		background-size: 100% 100%;
 		position: relative;
 		margin-top: -50px;

@@ -190,18 +190,20 @@ var _default = {
   },
   onLoad: function onLoad(options) {
     var title = options.title;
+    console.log('http://localhost:8009/api/v1/sort/garbagetype/' + title);
     wx.request({
-      // url: 'https://changing.link/sort/garbagetype/' + title,
-      url: 'https://api.tianapi.com/lajifenlei/index',
+      url: 'http://localhost:8009/api/v1/sort/garbagetype/' + title,
+      // url: 'https://api.tianapi.com/lajifenlei/index',
       header: {
         'content-type': 'application/x-www-form-urlencoded'
       },
-      data: {
-        key: '5b03bc48fa783f0832d5014fd16afc21',
-        word: title
-      },
+      // data: {
+      // 	key: '5b03bc48fa783f0832d5014fd16afc21',
+      // 	word: title
+      // },
       success: function success(res) {
         console.log(res.data.code);
+        console.log(res.data);
         if (res.data.code == 250) {
           wx.switchTab({
             url: "/pages/index/index"
@@ -212,16 +214,19 @@ var _default = {
           });
         } else {
           // _self.item = res.data.data[0]
-          _self.item = res.data.newslist[0];
-          if (res.data.newslist[0] = 1) {
-            _self.wname = '可回收垃圾';
-          } else if (res.data.newslist[0] = 2) {
-            _self.wname = '有害垃圾';
-          } else if (res.data.newslist[0] = 3) {
-            _self.wname = '厨余垃圾';
-          } else if (res.data.newslist[0] = 4) {
-            _self.wname = '其他垃圾';
-          }
+          // _self.item = res.data.newslist[0]
+
+          // if (res.data.newslist[0] = 1) {
+          // 	_self.wname = '可回收垃圾'
+          // } else if (res.data.newslist[0] = 2) {
+          // 	_self.wname = '有害垃圾'
+          // } else if (res.data.newslist[0] = 3) {
+          // 	_self.wname = '厨余垃圾'
+          // } else if (res.data.newslist[0] = 4) {
+          // 	_self.wname = '其他垃圾'
+          // }
+          _self.item = res.data.data[0];
+          _self.wname = res.data.data[0].gmessage;
         }
       }
     });

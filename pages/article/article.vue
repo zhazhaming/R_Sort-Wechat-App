@@ -2,24 +2,24 @@
 	<view class="page">
 		<view class="bg">
 			<image 
-			src="https://s2.loli.net/2022/06/25/WsYVpdzQ2tvqO1B.png" 
+			src="https://picst.sunbangyan.cn/2024/01/27/3d77af362dcfd97a2a9ea8bcb9c9aad7.jpeg" 
 			></image>
 		</view>
 		<view class="article1"  @click="art1">
-			<image src="https://s2.loli.net/2022/06/25/MivCjwURWZGq5It.png" ></image>
+			<image src="https://picdl.sunbangyan.cn/2024/01/27/32692de65df90a293b4b461d787051f8.jpeg" ></image>
 			
 		</view>
 		<view class="article2" @click="art2">
-			<image src="https://s2.loli.net/2022/06/25/WHtQR6GoCXa74Jv.png" ></image>
+			<image src="https://picdl.sunbangyan.cn/2024/01/27/b3805b85712e234479ccb8660cca4b16.jpeg" ></image>
 		</view>
 		<view class="article3" @click="art3">
-			<image src="https://s2.loli.net/2022/06/25/BzkTpC7QGW2d9cE.png" ></image>
+			<image src="https://picss.sunbangyan.cn/2024/01/27/88b9cb5d68097468f9673a83c4bbbd3d.jpeg" ></image>
 		</view>
 		<view class="article4" @click="art4">
-			<image src="https://s2.loli.net/2022/06/25/6Y9psCBV3FTNua7.png" ></image>
+			<image src="https://picdm.sunbangyan.cn/2024/01/27/80271359c71333abd6ea80b7392a1589.jpeg" ></image>
 		</view>
 		<view class="article5" @click="art5">
-			<image src="https://s2.loli.net/2022/06/25/qOMauzEfbLX8lpe.png" ></image>
+			<image src="https://picss.sunbangyan.cn/2024/01/27/f7d64b4116940dafb7bef764c2c6ed76.jpeg" ></image>
 		</view>
 	</view>
 </template>

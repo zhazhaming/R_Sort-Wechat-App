@@ -2,7 +2,7 @@
 	<view class="page">
 		<view class="bg">
 			<image 
-			src="https://s2.loli.net/2022/06/24/mqbnpHlaXLcVeAz.png" 
+			src="https://picdm.sunbangyan.cn/2024/01/27/11fc0cc036b767922202862d6d39eb6e.jpeg" 
 			></image>
 		
 		</view>
