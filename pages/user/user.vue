@@ -60,34 +60,53 @@
 				nickName: '点击头像登录',
 				isLogin: 0,
 				number: 0,
-				time: ''
+				time: '',
+				isSign: false
 			};
 		},
 		methods: {
-			getUserProfile() {
-				const that = this
-				wx.getUserProfile({
-					desc: '用于完善资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-					success: (res) => {
-						console.log(res);
-						that.avatarUrl = res.userInfo.avatarUrl
-						that.nickName = res.userInfo.nickName
-						that.isLogin = 1
-						const db = wx.cloud.database()
-						db.collection('grade').add({
-							data: {
-								grade: 0
-							},
-							success: function(res) {
-								console.log(res)
-							}
-						})
-						db.collection('grade').doc('f6e08a6462b99d6e09e2e3230c6b3f1a').get({
-							success: function(res) {
-								that.number = res.data.grade
-							}
-						})
+			// getUserProfile() {
+			// 	const that = this
+			// 	wx.getUserProfile({
+			// 		desc: '用于完善资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+			// 		success: (res) => {
+			// 			console.log(res);
+			// 			that.avatarUrl = res.userInfo.avatarUrl
+			// 			that.nickName = res.userInfo.nickName
+			// 			that.isLogin = 1
+			// 			const db = wx.cloud.database()
+			// 			db.collection('grade').add({
+			// 				data: {
+			// 					grade: 0
+			// 				},
+			// 				success: function(res) {
+			// 					console.log(res)
+			// 				}
+			// 			})
+			// 			db.collection('grade').doc('f6e08a6462b99d6e09e2e3230c6b3f1a').get({
+			// 				success: function(res) {
+			// 					that.number = res.data.grade
+			// 				}
+			// 			})
+			// 		}
+			// 	})
+			// },
+			onLoad(options){
+				var userInfo = JSON.parse(options.obj);
+				console.log("进入自动加载函数");
+				if (userInfo != null){
+					this.avatarUrl = userInfo.imgUrl;
+					this.nickName = userInfo.username;
+					this.number = userInfo.score;
+					this.isLogin = 1;
+					if(userInfo.sign == 1){
+						this.isSign = true;
 					}
+				}
+			},
+			getUserProfile(){
+				wx.navigateTo({
+					url: `/pages/LoginAndRegister/login`
 				})
 			},
 			toEncyclopedias2(){
@@ -110,37 +129,34 @@
 					});
 				}
 
-				if (this.isLogin == 1) {
-					if (this.time != new Date().getDate()) {
-						const that = this
-						const db = wx.cloud.database()
-						const _ = db.command
-						db.collection('grade').doc('f6e08a6462b99d6e09e2e3230c6b3f1a').update({
-							// data 传入需要局部更新的数据
-							data: {
-								grade: _.inc(10)
-							},
-							success: function(res) {
-								db.collection('grade').doc('f6e08a6462b99d6e09e2e3230c6b3f1a').get({
-									success: function(res) {
-										that.number = res.data.grade
-									}
-								})
+				if (this.isLogin == 1 && this.isSign == false) {
+					uni.request({
+						url: `http://localhost:8009/api/v1/user/updateScore?username=${this.nickName}&score=5`,
+						method:'POST',
+						success:(res) =>{
+							if (res.data.code == 200){
+								this.isSign = true;
+								this.number = res.data.data;
+								if (this.isSign){
+									uni.showToast({
+										icon: 'success',
+										title: '签到成功',
+										duration: 2000
+									});
+								}
 							}
-						})
-						this.time = new Date().getDate();
-					} else {
+						},
+					})
+					}else {
 						uni.showToast({
 							icon: 'error',
 							title: '今日已签到',
 							duration: 2000
 						});
-					}
-
+					} 
 				}
 			}
 		}
-	}
 </script>
 
 <style scoped>

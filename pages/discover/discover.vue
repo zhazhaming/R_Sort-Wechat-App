@@ -30,11 +30,13 @@
 		},
 		methods: {
 			toparticipate() {
+				console.log("点击了参与列表")
 				wx.navigateTo({
-					url: '../participate/participate'
+					url: '../participate/participate_new'
 				})
 			},
 			toarticle() {
+				console.log("进入了文章列表")
 				wx.navigateTo({
 					url: '../article/article'
 				})

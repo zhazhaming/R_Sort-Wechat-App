@@ -202,35 +202,53 @@ var _default = {
       nickName: '点击头像登录',
       isLogin: 0,
       number: 0,
-      time: ''
+      time: '',
+      isSign: false
     };
   },
   methods: {
-    getUserProfile: function getUserProfile() {
-      var that = this;
-      wx.getUserProfile({
-        desc: '用于完善资料',
-        // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-        success: function success(res) {
-          console.log(res);
-          that.avatarUrl = res.userInfo.avatarUrl;
-          that.nickName = res.userInfo.nickName;
-          that.isLogin = 1;
-          var db = wx.cloud.database();
-          db.collection('grade').add({
-            data: {
-              grade: 0
-            },
-            success: function success(res) {
-              console.log(res);
-            }
-          });
-          db.collection('grade').doc('f6e08a6462b99d6e09e2e3230c6b3f1a').get({
-            success: function success(res) {
-              that.number = res.data.grade;
-            }
-          });
+    // getUserProfile() {
+    // 	const that = this
+    // 	wx.getUserProfile({
+    // 		desc: '用于完善资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+    // 		success: (res) => {
+    // 			console.log(res);
+    // 			that.avatarUrl = res.userInfo.avatarUrl
+    // 			that.nickName = res.userInfo.nickName
+    // 			that.isLogin = 1
+    // 			const db = wx.cloud.database()
+    // 			db.collection('grade').add({
+    // 				data: {
+    // 					grade: 0
+    // 				},
+    // 				success: function(res) {
+    // 					console.log(res)
+    // 				}
+    // 			})
+    // 			db.collection('grade').doc('f6e08a6462b99d6e09e2e3230c6b3f1a').get({
+    // 				success: function(res) {
+    // 					that.number = res.data.grade
+    // 				}
+    // 			})
+    // 		}
+    // 	})
+    // },
+    onLoad: function onLoad(options) {
+      var userInfo = JSON.parse(options.obj);
+      console.log("进入自动加载函数");
+      if (userInfo != null) {
+        this.avatarUrl = userInfo.imgUrl;
+        this.nickName = userInfo.username;
+        this.number = userInfo.score;
+        this.isLogin = 1;
+        if (userInfo.sign == 1) {
+          this.isSign = true;
         }
+      }
+    },
+    getUserProfile: function getUserProfile() {
+      wx.navigateTo({
+        url: "/pages/LoginAndRegister/login"
       });
     },
     toEncyclopedias2: function toEncyclopedias2() {
@@ -244,6 +262,7 @@ var _default = {
       });
     },
     toEncyclopedias1: function toEncyclopedias1() {
+      var _this = this;
       console.log(this.isLogin);
       if (this.isLogin == 0) {
         uni.showToast({
@@ -252,32 +271,30 @@ var _default = {
           duration: 2000
         });
       }
-      if (this.isLogin == 1) {
-        if (this.time != new Date().getDate()) {
-          var that = this;
-          var db = wx.cloud.database();
-          var _ = db.command;
-          db.collection('grade').doc('f6e08a6462b99d6e09e2e3230c6b3f1a').update({
-            // data 传入需要局部更新的数据
-            data: {
-              grade: _.inc(10)
-            },
-            success: function success(res) {
-              db.collection('grade').doc('f6e08a6462b99d6e09e2e3230c6b3f1a').get({
-                success: function success(res) {
-                  that.number = res.data.grade;
-                }
-              });
+      if (this.isLogin == 1 && this.isSign == false) {
+        uni.request({
+          url: "http://localhost:8009/api/v1/user/updateScore?username=".concat(this.nickName, "&score=5"),
+          method: 'POST',
+          success: function success(res) {
+            if (res.data.code == 200) {
+              _this.isSign = true;
+              _this.number = res.data.data;
+              if (_this.isSign) {
+                uni.showToast({
+                  icon: 'success',
+                  title: '签到成功',
+                  duration: 2000
+                });
+              }
             }
-          });
-          this.time = new Date().getDate();
-        } else {
-          uni.showToast({
-            icon: 'error',
-            title: '今日已签到',
-            duration: 2000
-          });
-        }
+          }
+        });
+      } else {
+        uni.showToast({
+          icon: 'error',
+          title: '今日已签到',
+          duration: 2000
+        });
       }
     }
   }

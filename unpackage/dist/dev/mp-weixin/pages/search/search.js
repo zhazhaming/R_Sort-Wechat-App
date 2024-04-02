@@ -190,15 +190,22 @@ exports.default = void 0;
 //
 //
 //
+//
+//
+//
 
 var _self;
 var _default = {
   data: function data() {
     return {
       hotSearch: [],
-      searchList: []
+      searchList: [],
+      showResultMessage: false,
+      //显示“暂无查询结果”文本
+      isRequest: true //当输入框中没有文本，则设置为fasle不请求接口
     };
   },
+
   methods: {
     toDetails: function toDetails(e) {
       var title = e.currentTarget.dataset.title;
@@ -210,22 +217,30 @@ var _default = {
       var val = e.detail.value;
       if (val.length == 0) {
         _self.searchList = [];
+        this.showResultMessage = false;
+        this.isRequest = false;
+      } else {
+        this.isRequest = true;
       }
-      wx.request({
-        // url: 'https://changing.link/sort/garbagetype/' + val,
-        url: 'https://api.tianapi.com/lajifenlei/index',
-        header: {
-          'content-type': 'application/x-www-form-urlencoded'
-        },
-        data: {
-          key: '5b03bc48fa783f0832d5014fd16afc21',
-          word: val
-        },
-        success: function success(res) {
-          // _self.searchList = res.data.data
-          _self.searchList = res.data.newslist;
-        }
-      });
+      if (this.isRequest) {
+        wx.request({
+          url: 'http://localhost:8009/api/v1/sort/garbage-encyclopedia/name/' + val,
+          // url: 'https://api.tianapi.com/lajifenlei/index',
+          // header: {
+          // 	'content-type': 'application/x-www-form-urlencoded'
+          // },
+          // data: {
+          // 	key: '5b03bc48fa783f0832d5014fd16afc21',
+          // 	word: val
+          // },
+          success: function success(res) {
+            _self.searchList = res.data.data;
+            _self.showResultMessage = _self.searchList.length <= 0;
+            // _self.searchList = res.data.newslist
+            // console.log(_self.searchList)
+          }
+        });
+      }
     }
   },
   created: function created() {
@@ -233,18 +248,18 @@ var _default = {
   },
   onLoad: function onLoad() {
     wx.request({
-      // url: 'https://changing.link/sort/garbage-encyclopedia/random',
-      url: 'https://api.tianapi.com/hotlajifenlei/index',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      data: {
-        key: '5b03bc48fa783f0832d5014fd16afc21'
-      },
+      url: 'http://localhost:8009/api/v1/sort/garbage-encyclopedia/random',
+      // url: 'https://api.tianapi.com/hotlajifenlei/index',
+      // header: {
+      // 	'content-type': 'application/x-www-form-urlencoded'
+      // },
+      // data: {
+      // 	key: '5b03bc48fa783f0832d5014fd16afc21',
+      // },
       success: function success(res) {
         console.log(res);
-        // _self.hotSearch = res.data.data
-        _self.hotSearch = res.data.newslist;
+        _self.hotSearch = res.data.data;
+        // _self.hotSearch = res.data.newslist
       }
     });
   }

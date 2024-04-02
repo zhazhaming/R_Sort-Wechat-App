@@ -1,0 +1,23 @@
+
+.activity-modules.data-v-fd30f6b6{
+	width: 100%;
+	  height: 100%;
+	  background-size: cover; /* 背景图片覆盖整个容器 */
+	  background-position: center; /* 背景图片居中 */
+}
+.module.data-v-fd30f6b6 {
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+.activity-image.data-v-fd30f6b6 {
+	width: 100%; /* 图片宽度充满模块宽度 */
+    height: auto; /* 图片高度自动调整以保持纵横比 */
+    aspect-ratio: 16 / 9; /* 您想要的长方形图片比例，这里是16:9 */
+    object-fit: cover; /* 图片覆盖元素的整个内容区域 */
+}
+.activity-info.data-v-fd30f6b6 {
+  margin-top: 10px;
+}
+

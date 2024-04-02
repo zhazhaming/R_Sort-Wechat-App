@@ -84,6 +84,18 @@
             }
             
         }
+
+        ,{
+          "path" : "pages/participate/participate_new",
+          "style" :                                                                                    
+          {
+              "navigationBarTitleText": "",
+              "enablePullDownRefresh": false
+          }
+          
+		}
+		
+
         ,{
             "path" : "pages/article/article",
             "style" :                                                                                    
@@ -247,6 +259,24 @@
             }
             
         }
+		,{
+		  "path" : "pages/LoginAndRegister/login",
+		  "style" :                                                                                    
+		  {
+		      "navigationBarTitleText": "",
+		      "enablePullDownRefresh": false
+		  }
+		  
+		}
+		,{
+		  "path" : "pages/LoginAndRegister/register",
+		  "style" :                                                                                    
+		  {
+		      "navigationBarTitleText": "",
+		      "enablePullDownRefresh": false
+		  }
+		  
+		}
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

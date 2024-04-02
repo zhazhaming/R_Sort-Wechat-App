@@ -10,6 +10,7 @@
     "pages/encyclopedias4/encyclopedias4",
     "pages/user/user",
     "pages/participate/participate",
+    "pages/participate/participate_new",
     "pages/article/article",
     "pages/competition/competition",
     "pages/participate/out1/out1",
@@ -27,7 +28,9 @@
     "pages/rural-environment/rural-environment",
     "pages/competition/return/return",
     "pages/user/contact/contact",
-    "pages/user/our/our"
+    "pages/user/our/our",
+    "pages/LoginAndRegister/login",
+    "pages/LoginAndRegister/register"
   ],
   "subPackages": [],
   "window": {
@@ -62,5 +65,6 @@
       }
     ]
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
 }
