@@ -6,25 +6,31 @@
 		</view>
 		<view class="_abbr">
 			<view class="line">
+				<!-- 背景 -->
 				<img src="https://s2.loli.net/2022/06/14/PQnDaybdW3cmI7G.png" alt="">
 			</view>
 			<view class="bin1" @click="toEncyclopedias1">
+				<!-- 签到 -->
 				<image class="bin" src="https://s2.loli.net/2022/06/27/ubityYNIce6r9wf.png">
 				</image>
 			</view>
 			<view class="bin2" @click="toEncyclopedias2">
+				<!-- 客服 -->
 				<image class="bin" src="https://s2.loli.net/2022/06/14/pykYIPlSotivcW8.png">
 				</image>
 			</view>
 			<view class="bin3">
+				<!-- 积分 -->
 				<image class="bin" src="https://s2.loli.net/2022/06/27/hzV1GZAkmKqEj3T.png">
 					
 				</image>
 				<view class="num">
 					{{number}}
+					
 				</view>
 			</view>
 			<view class="bin4" @click="toEncyclopedias3">
+				<!-- 关于我们 -->
 				<image class="bin" src="https://s2.loli.net/2022/06/14/cuzj8AEPrSvgint.png">
 				</image>
 			</view>
@@ -53,6 +59,7 @@
 </template>
 
 <script>
+// import { data } from 'jquery';
 	export default {
 		data() {
 			return {
@@ -61,54 +68,99 @@
 				isLogin: 0,
 				number: 0,
 				time: '',
-				isSign: false
+				isSign: false,
+				userinfo:{
+					username: "",
+					geneder: "",
+					img_url: "",
+					appid: "",
+					appSceret: "",
+					code: ""
+				}
 			};
 		},
 		methods: {
-			// getUserProfile() {
-			// 	const that = this
-			// 	wx.getUserProfile({
-			// 		desc: '用于完善资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-			// 		success: (res) => {
-			// 			console.log(res);
-			// 			that.avatarUrl = res.userInfo.avatarUrl
-			// 			that.nickName = res.userInfo.nickName
-			// 			that.isLogin = 1
-			// 			const db = wx.cloud.database()
-			// 			db.collection('grade').add({
-			// 				data: {
-			// 					grade: 0
-			// 				},
-			// 				success: function(res) {
-			// 					console.log(res)
-			// 				}
-			// 			})
-			// 			db.collection('grade').doc('f6e08a6462b99d6e09e2e3230c6b3f1a').get({
-			// 				success: function(res) {
-			// 					that.number = res.data.grade
-			// 				}
-			// 			})
+			async getUserProfile() {
+			  const that = this;
+			  const appid = "wx8b5515246d31aede";
+			  const appsceret = "e94d75e317a404349bd1fbc36aef8b87";
+			  try {
+			    // 获取用户个人信息
+			    const userProfile = await new Promise((resolve, reject) => {
+			      wx.getUserProfile({
+			        desc: '用于完善资料',
+			        success: (res) => {
+			          console.log(res);
+			          that.avatarUrl = res.userInfo.avatarUrl;
+			          that.nickName = res.userInfo.nickName;
+			          that.isLogin = 1;
+			          that.userinfo.username = that.nickName;
+			          that.userinfo.gender = res.userInfo.gender;
+			          that.userinfo.img_url = res.userInfo.avatarUrl;
+			          that.userinfo.appid = appid;
+			          that.userinfo.appSceret = appsceret;
+			          resolve(res.userInfo);
+			        },
+			        fail: reject
+			      });
+			    });
+			
+			    // 登录获取 code
+			    const loginResult = await new Promise((resolve, reject) => {
+			      wx.login({
+			        success: (res) => {
+			          if (res.code) {
+			            console.log(res.code);
+			            that.userinfo.code = res.code;
+			            resolve(res.code);
+			          } else {
+			            reject(new Error('登录失败！' + res.errMsg));
+			          }
+			        },
+			        fail: reject
+			      });
+			    });
+			
+			    // 发起请求
+			    const requestResult = await new Promise((resolve, reject) => {
+			      wx.request({
+			        url: 'http://localhost:8009/api/v1/user/wx_login',
+			        method: 'POST',
+			        data: that.userinfo,
+			        success: (res) => {
+			              that.setData({
+			                number: res.data.score
+			              });
+			              console.log(that.number);
+			              resolve(res);
+			            },
+			            fail: reject
+			      });
+			    });
+				
+			    console.log('请求成功', requestResult.data);
+			  } catch (error) {
+			    console.error('发生错误', error);
+			  }
+			},
+			// onLoad(options){
+			// 	var userInfo = JSON.parse(options.obj);
+			// 	console.log("进入自动加载函数");
+			// 	if (userInfo != null){
+			// 		this.avatarUrl = userInfo.imgUrl;
+			// 		this.nickName = userInfo.username;
+			// 		this.number = userInfo.score;
+			// 		this.isLogin = 1;
+			// 		if(userInfo.sign == 1){
+			// 			this.isSign = true;
 			// 		}
+			// 	}
+			// },
+			// getUserProfile(){
+			// 	wx.navigateTo({
+			// 		url: `/pages/LoginAndRegister/login`
 			// 	})
 			// },
-			onLoad(options){
-				var userInfo = JSON.parse(options.obj);
-				console.log("进入自动加载函数");
-				if (userInfo != null){
-					this.avatarUrl = userInfo.imgUrl;
-					this.nickName = userInfo.username;
-					this.number = userInfo.score;
-					this.isLogin = 1;
-					if(userInfo.sign == 1){
-						this.isSign = true;
-					}
-				}
-			},
-			getUserProfile(){
-				wx.navigateTo({
-					url: `/pages/LoginAndRegister/login`
-				})
-			},
 			toEncyclopedias2(){
 				wx.navigateTo({
 					url: `/pages/user/contact/contact`

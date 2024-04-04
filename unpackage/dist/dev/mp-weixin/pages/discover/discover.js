@@ -135,7 +135,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(wx) {
+/* WEBPACK VAR INJECTION */(function(uni, wx) {
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -161,12 +161,25 @@ exports.default = void 0;
 //
 //
 //
-//
-//
-//
+// import { get } from 'jquery'
+// import { methods } from '../../uni_modules/uview-ui/libs/mixin/mixin'
 var _default = {
   data: function data() {
-    return {};
+    return {
+      videoList: []
+    };
+  },
+  onLoad: function onLoad() {
+    var _this = this;
+    console.log("自动加载视频");
+    uni.request({
+      url: "http://localhost:8009/api/v1/images/randomVideo?pageSize=4",
+      success: function success(res) {
+        if (res.data.code == 200) {
+          _this.videoList = res.data.data;
+        }
+      }
+    });
   },
   methods: {
     toparticipate: function toparticipate() {
@@ -189,7 +202,7 @@ var _default = {
   }
 };
 exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/wx.js */ 1)["default"]))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/wx.js */ 1)["default"]))
 
 /***/ }),
 

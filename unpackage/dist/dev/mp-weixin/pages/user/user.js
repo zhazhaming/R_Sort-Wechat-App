@@ -137,10 +137,13 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 /* WEBPACK VAR INJECTION */(function(wx, uni) {
 
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 57));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 59));
 //
 //
 //
@@ -195,6 +198,13 @@ exports.default = void 0;
 //
 //
 //
+//
+//
+//
+//
+//
+//
+// import { data } from 'jquery';
 var _default = {
   data: function data() {
     return {
@@ -203,54 +213,119 @@ var _default = {
       isLogin: 0,
       number: 0,
       time: '',
-      isSign: false
+      isSign: false,
+      userinfo: {
+        username: "",
+        geneder: "",
+        img_url: "",
+        appid: "",
+        appSceret: "",
+        code: ""
+      }
     };
   },
   methods: {
-    // getUserProfile() {
-    // 	const that = this
-    // 	wx.getUserProfile({
-    // 		desc: '用于完善资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-    // 		success: (res) => {
-    // 			console.log(res);
-    // 			that.avatarUrl = res.userInfo.avatarUrl
-    // 			that.nickName = res.userInfo.nickName
-    // 			that.isLogin = 1
-    // 			const db = wx.cloud.database()
-    // 			db.collection('grade').add({
-    // 				data: {
-    // 					grade: 0
-    // 				},
-    // 				success: function(res) {
-    // 					console.log(res)
-    // 				}
-    // 			})
-    // 			db.collection('grade').doc('f6e08a6462b99d6e09e2e3230c6b3f1a').get({
-    // 				success: function(res) {
-    // 					that.number = res.data.grade
-    // 				}
-    // 			})
+    getUserProfile: function getUserProfile() {
+      var _this = this;
+      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
+        var that, appid, appsceret, userProfile, loginResult, requestResult;
+        return _regenerator.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                that = _this;
+                appid = "wx8b5515246d31aede";
+                appsceret = "e94d75e317a404349bd1fbc36aef8b87";
+                _context.prev = 3;
+                _context.next = 6;
+                return new Promise(function (resolve, reject) {
+                  wx.getUserProfile({
+                    desc: '用于完善资料',
+                    success: function success(res) {
+                      console.log(res);
+                      that.avatarUrl = res.userInfo.avatarUrl;
+                      that.nickName = res.userInfo.nickName;
+                      that.isLogin = 1;
+                      that.userinfo.username = that.nickName;
+                      that.userinfo.gender = res.userInfo.gender;
+                      that.userinfo.img_url = res.userInfo.avatarUrl;
+                      that.userinfo.appid = appid;
+                      that.userinfo.appSceret = appsceret;
+                      resolve(res.userInfo);
+                    },
+                    fail: reject
+                  });
+                });
+              case 6:
+                userProfile = _context.sent;
+                _context.next = 9;
+                return new Promise(function (resolve, reject) {
+                  wx.login({
+                    success: function success(res) {
+                      if (res.code) {
+                        console.log(res.code);
+                        that.userinfo.code = res.code;
+                        resolve(res.code);
+                      } else {
+                        reject(new Error('登录失败！' + res.errMsg));
+                      }
+                    },
+                    fail: reject
+                  });
+                });
+              case 9:
+                loginResult = _context.sent;
+                _context.next = 12;
+                return new Promise(function (resolve, reject) {
+                  wx.request({
+                    url: 'http://localhost:8009/api/v1/user/wx_login',
+                    method: 'POST',
+                    data: that.userinfo,
+                    success: function success(res) {
+                      that.setData({
+                        number: res.data.score
+                      });
+                      console.log(that.number);
+                      resolve(res);
+                    },
+                    fail: reject
+                  });
+                });
+              case 12:
+                requestResult = _context.sent;
+                console.log('请求成功', requestResult.data);
+                _context.next = 19;
+                break;
+              case 16:
+                _context.prev = 16;
+                _context.t0 = _context["catch"](3);
+                console.error('发生错误', _context.t0);
+              case 19:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[3, 16]]);
+      }))();
+    },
+    // onLoad(options){
+    // 	var userInfo = JSON.parse(options.obj);
+    // 	console.log("进入自动加载函数");
+    // 	if (userInfo != null){
+    // 		this.avatarUrl = userInfo.imgUrl;
+    // 		this.nickName = userInfo.username;
+    // 		this.number = userInfo.score;
+    // 		this.isLogin = 1;
+    // 		if(userInfo.sign == 1){
+    // 			this.isSign = true;
     // 		}
+    // 	}
+    // },
+    // getUserProfile(){
+    // 	wx.navigateTo({
+    // 		url: `/pages/LoginAndRegister/login`
     // 	})
     // },
-    onLoad: function onLoad(options) {
-      var userInfo = JSON.parse(options.obj);
-      console.log("进入自动加载函数");
-      if (userInfo != null) {
-        this.avatarUrl = userInfo.imgUrl;
-        this.nickName = userInfo.username;
-        this.number = userInfo.score;
-        this.isLogin = 1;
-        if (userInfo.sign == 1) {
-          this.isSign = true;
-        }
-      }
-    },
-    getUserProfile: function getUserProfile() {
-      wx.navigateTo({
-        url: "/pages/LoginAndRegister/login"
-      });
-    },
     toEncyclopedias2: function toEncyclopedias2() {
       wx.navigateTo({
         url: "/pages/user/contact/contact"
@@ -262,7 +337,7 @@ var _default = {
       });
     },
     toEncyclopedias1: function toEncyclopedias1() {
-      var _this = this;
+      var _this2 = this;
       console.log(this.isLogin);
       if (this.isLogin == 0) {
         uni.showToast({
@@ -277,9 +352,9 @@ var _default = {
           method: 'POST',
           success: function success(res) {
             if (res.data.code == 200) {
-              _this.isSign = true;
-              _this.number = res.data.data;
-              if (_this.isSign) {
+              _this2.isSign = true;
+              _this2.number = res.data.data;
+              if (_this2.isSign) {
                 uni.showToast({
                   icon: 'success',
                   title: '签到成功',
