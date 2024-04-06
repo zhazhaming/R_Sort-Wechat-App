@@ -47,6 +47,7 @@
 		},
 		onLoad(options) {
 			let title = options.title;
+			console.log(title)
 			console.log('http://localhost:8009/api/v1/sort/garbagetype/' + title)
 			wx.request({
 				url: 'http://localhost:8009/api/v1/sort/garbagetype/' + title,

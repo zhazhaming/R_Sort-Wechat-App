@@ -137,10 +137,13 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 /* WEBPACK VAR INJECTION */(function(wx, uni) {
 
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
+var _methods;
 //
 //
 //
@@ -239,7 +242,7 @@ var _default = {
     };
   },
   onLoad: function onLoad() {},
-  methods: {
+  methods: (_methods = {
     toEncyclopedias1: function toEncyclopedias1() {
       wx.navigateTo({
         url: '../encyclopedias1/encyclopedias1'
@@ -332,8 +335,110 @@ var _default = {
       wx.navigateTo({
         url: '../details/details?title=' + result
       });
+    },
+    // 选择音频文件并上传
+    uploadAudio: function uploadAudio() {
+      var that = this;
+      uni.chooseMedia({
+        count: 1,
+        // 最多可以选择的文件数，默认9
+        mediaType: ['audio'],
+        // 可以指定是原图还是压缩图，默认二者都有
+        sourceType: ['album', 'camera'],
+        // 可以指定来源是相册还是录音，默认二者都有
+        success: function success(res) {
+          // 获取文件路径
+          var audioPath = res.tempFiles[0].tempFilePath;
+          console.log(audioPath);
+          // 调用上传的方法
+          that.uploadToServer(audioPath);
+        },
+        fail: function fail() {
+          wx.showToast({
+            title: '选择录音失败',
+            icon: "none"
+          });
+        }
+      });
     }
-  }
+  }, (0, _defineProperty2.default)(_methods, "uploadAudio", function uploadAudio() {
+    var that = this;
+    uni.chooseMedia({
+      count: 1,
+      // 最多可以选择的文件数，默认9
+      mediaType: ['audio'],
+      // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'],
+      // 可以指定来源是相册还是录音，默认二者都有
+      success: function success(res) {
+        // 获取文件路径
+        var audioPath = res.tempFiles[0].tempFilePath;
+        // 读取文件
+        wx.getFileSystemManager().readFile({
+          filePath: audioPath,
+          encoding: "base64",
+          success: function success(childRes) {
+            // 对文件进行Base64编码
+            var base64Data = childRes.data;
+            // 调用上传的方法
+            that.uploadToServer(base64Data);
+          },
+          fail: function fail(err) {
+            wx.showToast({
+              title: '读取录音失败',
+              icon: "none"
+            });
+          }
+        });
+      },
+      fail: function fail() {
+        wx.showToast({
+          title: '选择录音失败',
+          icon: "none"
+        });
+      }
+    });
+  }), (0, _defineProperty2.default)(_methods, "uploadToServer", function uploadToServer(base64Data) {
+    var that = this;
+    wx.showLoading({
+      title: '上传中...'
+    });
+    wx.request({
+      url: 'http://localhost:8009/api/v1/recognize/record/',
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        // 这里假设后端接口需要的是base64编码的音频数据
+        // 如果后端需要其他格式，请按照后端的要求进行调整
+        audioBase64: base64Data
+      },
+      success: function success(res) {
+        console.log(res);
+        wx.hideLoading();
+        if (res.statusCode === 200) {
+          // 假设后端返回的数据中有识别结果
+          var result = res.data.data;
+          // 根据需要处理结果，例如跳转到结果详情页
+          that.toDetails(result);
+        } else {
+          wx.showToast({
+            title: '上传失败',
+            icon: "none"
+          });
+        }
+      },
+      fail: function fail(err) {
+        console.error(err);
+        wx.hideLoading();
+        wx.showToast({
+          title: '上传失败',
+          icon: "none"
+        });
+      }
+    });
+  }), _methods)
 };
 exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/wx.js */ 1)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))

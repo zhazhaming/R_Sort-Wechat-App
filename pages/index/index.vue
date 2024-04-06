@@ -68,7 +68,7 @@
 				<image src="http://47.115.231.19:8888/group1/M00/00/00/L3PnE2YO4_-ADSScAAD6lG2h31s764.png" ></image>
 			</view>
 			<!-- 语言识别 -->
-			<image class="distinguish1"
+			<image class="distinguish1" @click="uploadAudio"
 				src="http://47.115.231.19:8888/group1/M00/00/00/L3PnE2YO49eANSEOAAAOJNWk8-0610.png">
 			</image>
 			<navigator url="/pages/search/search">
@@ -190,7 +190,106 @@
 				wx.navigateTo({
 					url: '../details/details?title=' + result
 				})
-			}
+			},
+			// 选择音频文件并上传
+			  uploadAudio() {
+			    const that = this;
+			    uni.chooseMedia({
+			      count: 1, // 最多可以选择的文件数，默认9
+			      mediaType: ['audio'], // 可以指定是原图还是压缩图，默认二者都有
+			      sourceType: ['album', 'camera'], // 可以指定来源是相册还是录音，默认二者都有
+			      success: function(res) {
+			        // 获取文件路径
+			        const audioPath = res.tempFiles[0].tempFilePath;
+					console.log(audioPath)
+			        // 调用上传的方法
+			        that.uploadToServer(audioPath);
+			      },
+			      fail: function() {
+			        wx.showToast({
+			          title: '选择录音失败',
+			          icon: "none"
+			        })
+			      }
+			    });
+			  },
+			  uploadAudio() {
+			      const that = this;
+			      uni.chooseMedia({
+			        count: 1, // 最多可以选择的文件数，默认9
+			        mediaType: ['audio'], // 可以指定是原图还是压缩图，默认二者都有
+			        sourceType: ['album', 'camera'], // 可以指定来源是相册还是录音，默认二者都有
+			        success: function(res) {
+			          // 获取文件路径
+			          const audioPath = res.tempFiles[0].tempFilePath;
+			          // 读取文件
+			          wx.getFileSystemManager().readFile({
+			            filePath: audioPath,
+			            encoding: "base64",
+			            success: childRes => {
+			              // 对文件进行Base64编码
+			              let base64Data = childRes.data;
+			              // 调用上传的方法
+			              that.uploadToServer(base64Data);
+			            },
+			            fail: err => {
+			              wx.showToast({
+			                title: '读取录音失败',
+			                icon: "none"
+			              })
+			            }
+			          })
+			        },
+			        fail: function() {
+			          wx.showToast({
+			            title: '选择录音失败',
+			            icon: "none"
+			          })
+			        }
+			      });
+			    },
+			    // 上传音频文件到服务器
+			    uploadToServer(base64Data) {
+			      const that = this;
+			      wx.showLoading({
+			        title: '上传中...',
+			      });
+			      wx.request({
+			        url: 'http://localhost:8009/api/v1/recognize/record/',
+			        method: 'POST',
+			        header: {
+			          'content-type': 'application/x-www-form-urlencoded'
+			        },
+			        data: {
+			          // 这里假设后端接口需要的是base64编码的音频数据
+			          // 如果后端需要其他格式，请按照后端的要求进行调整
+			          audioBase64: base64Data
+			        },
+			        success(res) {
+			          console.log(res);
+			          wx.hideLoading();
+			          if (res.statusCode === 200) {
+			            // 假设后端返回的数据中有识别结果
+			            let result = res.data.data;
+			            // 根据需要处理结果，例如跳转到结果详情页
+			            that.toDetails(result);
+			          } else {
+			            wx.showToast({
+			              title: '上传失败',
+			              icon: "none"
+			            });
+			          }
+			        },
+			        fail(err) {
+			          console.error(err);
+			          wx.hideLoading();
+			          wx.showToast({
+			            title: '上传失败',
+			            icon: "none"
+			          });
+			        }
+			      });
+			    },
 		}
 	}
 </script>
