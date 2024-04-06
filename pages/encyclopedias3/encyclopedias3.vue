@@ -8,12 +8,12 @@
 		
 		<view>
 			<image class="header"
-				src="https://picdm.sunbangyan.cn/2024/01/13/f2cdd3dee3b9227a7667603ce536b521.jpeg">
+				src="http://47.115.231.19:8888/group1/M00/00/00/L3PnE2YO5TeAOK2AAAF4n6LI6e4746.png">
 			</image>
 		</view>
 		<view>
 			<image class="xx"
-				src="https://picdl.sunbangyan.cn/2024/01/13/c1d911ef88a98bb4ff18b8353f67c101.jpeg">
+				src="http://47.115.231.19:8888/group1/M00/00/00/L3PnE2YO5PiAPdRpAAMxwShNXB0990.png">
 			</image>
 			
 		</view>
@@ -52,7 +52,7 @@
 		width: 90%;
 		height: 212px;
 		top: 2%;
-		left: 5%;
+		left: 1.5%;
 	}
 
 	.xx {
@@ -60,7 +60,7 @@
 		width: 90%;
 		height: 502px;
 		top: 32%;
-		left: 5%;
+		left: 1.5%;
 	}
 
 	

@@ -10,13 +10,13 @@
 		<view>
 			<!-- 其他垃圾详情页 -->
 			<image class="header"
-				src="https://picss.sunbangyan.cn/2024/01/13/7403499bcecda4c6f0398a43a5ffb192.jpeg">
+				src="http://47.115.231.19:8888/group1/M00/00/00/L3PnE2YO5ImADSe6AAFNdAjzmIk110.png">
 			</image>
 		</view>
 		<view>
 			<!-- 垃圾详情 -->
 			<image class="xx"
-				src="https://picdm.sunbangyan.cn/2024/01/13/e4cf90d208c7b718ecec34ab8cfc492d.jpeg">
+				src="http://47.115.231.19:8888/group1/M00/00/00/L3PnE2YO5VOAc3sCAANU5ErnZWM725.png">
 			</image>
 			
 		</view>
@@ -55,7 +55,7 @@
 		width: 90%;
 		height: 212px;
 		top: 2%;
-		left: 5%;
+		left: 1.5%;
 	}
 
 	.xx {
@@ -63,7 +63,7 @@
 		width: 90%;
 		height: 502px;
 		top: 32%;
-		left: 5%;
+		left: 1.5%;
 	}
 
 	

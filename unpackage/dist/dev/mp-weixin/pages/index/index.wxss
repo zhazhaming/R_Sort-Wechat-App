@@ -31,7 +31,7 @@
 	height: 500px;
 	position: absolute;
 	left: 0;
-	top: 25%;
+	top: 27.5%;
 	
 	z-index: 11;
 }
@@ -86,7 +86,7 @@
 }
 .distinguish1.data-v-57280228 {
 	position: absolute;
-	left: 17%;
+	left: 15%;
 	top: 40px;
 	width: 57.75px;
 	height: 77.25px;
@@ -100,7 +100,7 @@
 }
 .distinguish3.data-v-57280228 {
 	position: absolute;
-	left: 50%;
+	left: 48%;
 	margin-left: -37.5px;
 	top: 20px;
 	width: 81px;

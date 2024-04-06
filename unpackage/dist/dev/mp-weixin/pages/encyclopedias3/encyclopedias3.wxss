@@ -17,14 +17,14 @@
 	width: 90%;
 	height: 212px;
 	top: 2%;
-	left: 5%;
+	left: 1.5%;
 }
 .xx {
 	position: absolute;
 	width: 90%;
 	height: 502px;
 	top: 32%;
-	left: 5%;
+	left: 1.5%;
 }
 
 

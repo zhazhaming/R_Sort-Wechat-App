@@ -2,11 +2,15 @@
 	<view>
 		<view class="background">
 			<view>
-				<image class="article" src="https://picst.sunbangyan.cn/2024/01/27/f9a1a37a63d4b157ae801cf576ec31ea.jpeg" @click="toarticle"></image>
-				<image class="participate" src="https://picdm.sunbangyan.cn/2024/01/27/d039943c277f6dd938403b71a8ae4621.jpeg" @click="toparticipate"></image>
-				<image class="competition" src="https://picdm.sunbangyan.cn/2024/01/27/5a09c7f2e437043768baf097fa6d38eb.jpeg" @click="tocompetition"></image>
-				<!-- <image class="game" src="https://636c-cloud1-5gy3mgvy401e933b-1306354275.tcb.qcloud.la/game.png?sign=7a8d8a3793d6be8093d343731f74b01c&t=1644754338"></image> -->
+				<!-- 文章 -->
+				<image class="article" src="http://47.115.231.19:8888/group1/M00/00/00/L3PnE2YQuBuADb22AAASLKmbIoo674.png" @click="toarticle"></image>
+				<!-- 参与 -->
+				<image class="participate" src="http://47.115.231.19:8888/group1/M00/00/00/L3PnE2YQuCmANJy5AAAZVAjzVpA657.png" @click="toparticipate"></image>
+				<!-- 知识竞答 -->
+				<image class="competition" src="http://47.115.231.19:8888/group1/M00/00/00/L3PnE2YQuAuATA2GAAAU7HMlEhQ686.png" @click="tocompetition"></image>
+<!-- 				<image class="game" src="https://636c-cloud1-5gy3mgvy401e933b-1306354275.tcb.qcloud.la/game.png?sign=7a8d8a3793d6be8093d343731f74b01c&t=1644754338"></image> -->
 			</view>
+			<view class="background1"></view>
 		</view>
 		<view class="video">
 				<video wx:if="videoList && videoList.length > 0" class="video1" :src="videoList[0]"></video>
@@ -70,13 +74,28 @@
 		background-size: 100% 100%;
 		position: relative;
 	}
+	
+	.background1 {
+	    width: 90%; /* 背景图的宽度占页面宽度的90% */
+	    height: 25%; /* 背景图的高度占页面高度的15% */
+	    position: absolute; /* 使用绝对定位 */
+	    top: 75%; /* 上边距为页面高度的50%，使其垂直居中 */
+	    left: 5%; /* 左边距为页面宽度的3% */
+	    transform: translateY(-50%); /* 通过负的上边距来实现垂直居中 */
+	    z-index: 0; /* 设置层级为1，置于第二层图层 */
+	    background-image: url(http://47.115.231.19:8888/group1/M00/00/00/L3PnE2YQuDiAYNOEAABK1UkLVuw256.png); /* 背景图的 URL */
+	    background-size: cover; /* 背景图尺寸设置为 cover，保持图片比例并填充容器 */
+	    background-position: center; /* 背景图在容器中居中显示 */
+	    background-repeat: no-repeat; /* 背景图不重复 */
+	}
 
 	.participate {
 		width: 50px;
 		height: 64.5px;
 		position: absolute;
 		top: 350px;
-		left: 20%
+		left: 20%;
+		z-index: 1;
 	}
 
 	.article {
@@ -85,6 +104,7 @@
 		position: absolute;
 		top: 350px;
 		left: 45%;
+		z-index: 1;
 	}
 
 	.competition {
@@ -93,6 +113,7 @@
 		position: absolute;
 		top: 350px;
 		right: 20%;
+		z-index: 1;
 	}
 
 	.game {

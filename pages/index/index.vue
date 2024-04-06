@@ -9,19 +9,19 @@
 				<swiper-item>
 					<!-- 垃圾分类轮播图 -->
 					<view class="swiper-item" @click="toartcle1">
-						<image src="https://picst.sunbangyan.cn/2023/11/18/3273aa4484665c09e417ce2beb9afea6.png" mode=""></image>
-					</view>
-				</swiper-item>
-				<swiper-item>
-					<!-- 乡村环境轮播图 -->
-					<view class="swiper-item" @click="toartcle2">
-						<image src="https://picss.sunbangyan.cn/2023/11/18/ded564a6b10747596314a8b43da04bb3.png" mode=""></image>
+						<image src="http://47.115.231.19:8888/group1/M00/00/00/L3PnE2YO4-6AOWMNAAVo3C3Hwf0782.png" mode=""></image>
 					</view>
 				</swiper-item>
 				<swiper-item>
 					<!-- 乡村振兴 -->
+					<view class="swiper-item" @click="toartcle2">
+						<image src="http://47.115.231.19:8888/group1/M00/00/00/L3PnE2YO4ruAIiIpAAgeFMOnzmI593.png" mode=""></image>
+					</view>
+				</swiper-item>
+				<swiper-item>
+					<!-- 乡村环境轮播图 -->
 					<view class="swiper-item" @click="toartcle3">
-						<image src="https://picdm.sunbangyan.cn/2023/11/18/4dd9dc56cd4be7f3b021a500746e8882.png" mode=""></image>
+						<image src="http://47.115.231.19:8888/group1/M00/00/00/L3PnE2YO44yAHnU3AAcfZY4VBvc116.png" mode=""></image>
 					</view>
 				</swiper-item>
 			</swiper>
@@ -29,34 +29,33 @@
 		<view class="line">
 				<!-- 背景 -->
 				<image 
-					src="https://picst.sunbangyan.cn/2023/11/18/4bea2504d1618be48fac2b12e66e092e.png">
+					src="http://47.115.231.19:8888/group1/M00/00/00/L3PnE2YO5BOAYyp2AAK8jLDHX1s085.png">
 				</image>
 		</view>
 		<view class="curtain">
 			
-			
 				<view class="bin1" @click="toEncyclopedias1">
 					<!-- 其他垃圾 -->
 					<image class="bin"
-						src="https://picdl.sunbangyan.cn/2023/11/18/1147de29c0b1b312094f9c27d81bafce.png">
+						src="http://47.115.231.19:8888/group1/M00/00/00/L3PnE2YO2z-AS83BAABb3xBwwQ4581.png">
 					</image>
 				</view>
 				<view class="bin2" @click="toEncyclopedias2">
 					<!-- 可回收垃圾 -->
 					<image class="bin"
-						src="https://picdl.sunbangyan.cn/2023/11/18/8d554945acf58b2b69c2ca26e1367514.png">
+						src="http://47.115.231.19:8888/group1/M00/00/00/L3PnE2YO39OABVNxAABsz5VlYVo288.png">
 					</image>
 				</view>
 				<view class="bin3" @click="toEncyclopedias3">
 					<!-- 有害垃圾 -->
 					<image class="bin"
-						src="https://picst.sunbangyan.cn/2023/11/18/9c1b649df7ebc9db2af900dd1c6bd20e.png">
+						src="http://47.115.231.19:8888/group1/M00/00/00/L3PnE2YO4kaAExI-AAB3IBL0USE771.png">
 					</image>
 				</view>
 				<view class="bin4" @click="toEncyclopedias4">
 					<!-- 厨余垃圾 -->
 					<image class="bin"
-						src="https://picss.sunbangyan.cn/2023/11/18/8cf8fc2d057d76e53f81fbf640b5ed9b.png">
+						src="http://47.115.231.19:8888/group1/M00/00/00/L3PnE2YO4n-AFvWQAABUqK109Kk645.png">
 					</image>
 				</view>
 			
@@ -66,21 +65,21 @@
 		<view class="distinguish">
 			<view class="feature">
 				<!-- 底部背景 -->
-				<image src="https://picst.sunbangyan.cn/2023/11/18/bb4ca7a26bd52cf7ecf61a2b4bb04f64.png" ></image>
+				<image src="http://47.115.231.19:8888/group1/M00/00/00/L3PnE2YO4_-ADSScAAD6lG2h31s764.png" ></image>
 			</view>
 			<!-- 语言识别 -->
 			<image class="distinguish1"
-				src="https://picst.sunbangyan.cn/2023/11/18/024f54781da535a2f7cc0c2405ed5a0d.png">
+				src="http://47.115.231.19:8888/group1/M00/00/00/L3PnE2YO49eANSEOAAAOJNWk8-0610.png">
 			</image>
 			<navigator url="/pages/search/search">
 				<!-- 文字搜索 -->
 				<image class="distinguish2"
-					src="https://picdl.sunbangyan.cn/2023/11/18/b278ffbc208827262c006afef7d9520d.png">
+					src="http://47.115.231.19:8888/group1/M00/00/00/L3PnE2YO47qARFxZAAANBjBal4g262.png">
 				</image>
 			</navigator>
 			<!-- 拍照识别 -->
 			<image class="distinguish3" @click="takePhoto"
-				src="https://picss.sunbangyan.cn/2023/11/18/b1aaeb027ddbaffbb17bc1971cd8d77d.png">
+				src="http://47.115.231.19:8888/group1/M00/00/00/L3PnE2YO46SATy22AAAQy_4b23M116.png">
 			</image>
 		</view>
 	</view>
@@ -230,7 +229,7 @@
 		height: 500px;
 		position: absolute;
 		left: 0;
-		top: 25%;
+		top: 27.5%;
 		
 		z-index: 11;
 	}
@@ -273,9 +272,6 @@
 		z-index: 111;
 	}
 
-
-	
-
 	.distinguish {
 		position: relative;
 		width: 414px;
@@ -295,7 +291,7 @@
 	}
 	.distinguish1 {
 		position: absolute;
-		left: 17%;
+		left: 15%;
 		top: 40px;
 		width: 57.75px;
 		height: 77.25px;
@@ -311,7 +307,7 @@
 
 	.distinguish3 {
 		position: absolute;
-		left: 50%;
+		left: 48%;
 		margin-left: -37.5px;
 		top: 20px;
 		width: 81px;
