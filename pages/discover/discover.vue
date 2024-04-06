@@ -54,7 +54,7 @@
 			toarticle() {
 				console.log("进入了文章列表")
 				wx.navigateTo({
-					url: '../article/article'
+					url: '../article/article_new'
 				})
 			},
 			tocompetition() {

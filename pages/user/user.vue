@@ -128,16 +128,17 @@
 			        method: 'POST',
 			        data: that.userinfo,
 			        success: (res) => {
-			              that.setData({
-			                number: res.data.score
-			              });
-			              console.log(that.number);
+						
+						that.number = res.data.data.score;
+						if (res.data.data.sign == 1){
+							that.isSign = true
+						}
+						console.log(that.isSign)
 			              resolve(res);
 			            },
 			            fail: reject
 			      });
 			    });
-				
 			    console.log('请求成功', requestResult.data);
 			  } catch (error) {
 			    console.error('发生错误', error);

@@ -94,7 +94,6 @@
           }
           
 		}
-		
 
         ,{
             "path" : "pages/article/article",
@@ -105,6 +104,17 @@
             }
             
         }
+		
+		,{
+		  "path" : "pages/article/article_new",
+		  "style" :                                                                                    
+		  {
+		      "navigationBarTitleText": "",
+		      "enablePullDownRefresh": false
+		  }
+		  
+		}
+		
         ,{
             "path" : "pages/competition/competition",
             "style" :                                                                                    

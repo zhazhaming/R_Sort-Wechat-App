@@ -282,10 +282,11 @@ var _default = {
                     method: 'POST',
                     data: that.userinfo,
                     success: function success(res) {
-                      that.setData({
-                        number: res.data.score
-                      });
-                      console.log(that.number);
+                      that.number = res.data.data.score;
+                      if (res.data.data.sign == 1) {
+                        that.isSign = true;
+                      }
+                      console.log(that.isSign);
                       resolve(res);
                     },
                     fail: reject
